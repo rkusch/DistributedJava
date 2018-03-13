@@ -22,7 +22,7 @@
     <div class="header-content">
         <div class="header-content-inner">
             <h1>Explore the Outdoors</h1>
-            <p>With bikes from Adventure Works, you have the power to explore the outdoors like never before. </p>
+            <p>With bikes from Adventure Works, you have the ability to explore the outdoors like never before. </p>
             <a href="?product=all" class="btn btn-primary btn-lg">All Products</a>
         </div>
     </div>
