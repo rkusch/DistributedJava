@@ -80,16 +80,16 @@ public class AdventureWorks extends HttpServlet {
             //go to productDetails.jsp
         }
         
-        else if ("current".equals(cart)) {
-            request.setAttribute("addedToCart", "noItems");
-            dispatcher = request.getRequestDispatcher("/WEB-INF/cart.jsp");
-            
-        } else if (cart != null) {
-            Product currentProduct = products.validateProduct(cart);
-            request.setAttribute("addedToCart", currentProduct);
-            dispatcher = request.getRequestDispatcher("/WEB-INF/cart.jsp");
-        } 
-        
+//        else if ("current".equals(cart)) {
+//            request.setAttribute("addedToCart", "noItems");
+//            dispatcher = request.getRequestDispatcher("/WEB-INF/cart.jsp");
+//            
+//        } else if (cart != null) {
+//            Product currentProduct = products.validateProduct(cart);
+//            request.setAttribute("addedToCart", currentProduct);
+//            dispatcher = request.getRequestDispatcher("/WEB-INF/cart.jsp");
+//        } 
+//        
         else if (search != null) {
             dispatcher = request.getRequestDispatcher("/WEB-INF/pageDetail.jsp");
             //go to nameDetail.jsp

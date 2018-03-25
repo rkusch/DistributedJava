@@ -16,7 +16,7 @@
 
 
 <% List<StaticPage> pageList = (List<StaticPage>) request.getAttribute("pageList");%>
-<jsp:include page="/WEB-INF/header.html" />
+<jsp:include page="/WEB-INF/header.jsp" />
 
 <header>
     <div class="header-content">

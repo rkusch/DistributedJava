@@ -9,7 +9,10 @@ import edu.wctc.dj.week4.model.Product;
 import edu.wctc.dj.week4.model.ProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.UUID;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +42,7 @@ public class ShoppingCart extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShoppingCart</title>");            
+            out.println("<title>Servlet ShoppingCart</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ShoppingCart at " + request.getContextPath() + "</h1>");
@@ -57,8 +60,7 @@ public class ShoppingCart extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-        @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -68,6 +70,7 @@ public class ShoppingCart extends HttpServlet {
         String id = request.getParameter("id");
         String product = request.getParameter("product");
         String cart = request.getParameter("cart");
+        String qty = request.getParameter("qty");
         String addToCart = request.getParameter("addToCart");
         String search = request.getParameter("search");
 
@@ -81,27 +84,58 @@ public class ShoppingCart extends HttpServlet {
             request.setAttribute("currentProduct", currentProduct);
             dispatcher = request.getRequestDispatcher("/WEB-INF/productDetails.jsp");
             //go to productDetails.jsp
-        }
-        
-        else if ("current".equals(cart)) {
-            request.setAttribute("addedToCart", "noItems");
+        } else if ("view".equals(cart)) {
+//            request.setAttribute("addedToCart", "noItems");
+            TreeMap<String, Product> productsInCart = new TreeMap<>();
+            Enumeration keys = request.getSession().getAttributeNames();
+            while (keys.hasMoreElements()) {
+                String key = (String) keys.nextElement();
+                if (key.startsWith("cart")) {
+                    String[] keySplit = key.split("#");
+                    String productID = (String) request.getSession().getValue(key);
+                    Product validatedProduct = products.validateProduct(productID);
+                    Double qtyConverted = null;
+                    if (validatedProduct != null) {
+                        try {
+                             qtyConverted = Double.valueOf(keySplit[2]);
+                        } catch (NumberFormatException nfe) {
+                            //dont add product
+                        }
+                        if (qtyConverted != null) {
+                            productsInCart.put(key, validatedProduct);
+                        }
+                        
+                    }
+
+                }
+//        out.println(key + ": " + session.getValue(key) + "<br>");
+            }
+            request.setAttribute("productsInCart", productsInCart);
             dispatcher = request.getRequestDispatcher("/WEB-INF/cart.jsp");
-            
-        } else if (cart != null) {
-            Product currentProduct = products.validateProduct(cart);
-            request.setAttribute("addedToCart", currentProduct);
-            dispatcher = request.getRequestDispatcher("/WEB-INF/cart.jsp");
-        } 
-        
-        else if (search != null) {
+
+        } else if (id != null && "add".equals(cart) && qty != null) {
+            Product validatedProduct = products.validateProduct(id);
+            if (validatedProduct != null) {
+                UUID uniqueID = UUID.randomUUID();
+                request.setAttribute("validatedProduct", validatedProduct);
+                request.setAttribute("currentQty", qty);
+                request.setAttribute("uniqueID", uniqueID);
+            }
+
+            dispatcher = request.getRequestDispatcher("/WEB-INF/addToCart.jsp");
+        } else if (search != null) {
             dispatcher = request.getRequestDispatcher("/WEB-INF/pageDetail.jsp");
             //go to nameDetail.jsp
+        } else if ("removeAll".equals(cart)) {
+            request.setAttribute("removeAll", "true");
+            dispatcher = request.getRequestDispatcher("/WEB-INF/modifyCart.jsp");
+            //go to home.jsp
         } else {
             dispatcher = request.getRequestDispatcher("/WEB-INF/home.jsp");
             //go to home.jsp
         }
-            dispatcher.forward(request, response);
-            
+        dispatcher.forward(request, response);
+
     }
 
     /**
@@ -115,7 +149,44 @@ public class ShoppingCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        ProductService products = new ProductService();
+        RequestDispatcher dispatcher = null;
+        String id = request.getParameter("id");
+        String uuid = request.getParameter("uuid");
+        String cart = request.getParameter("cart");
+        String qty = request.getParameter("qty");
+        if (id != null && "add".equals(cart) && qty != null) {
+            Product validatedProduct = products.validateProduct(id);
+            Integer convertedQty = null;
+            try {
+                convertedQty = Integer.valueOf(qty);
+            } catch (NumberFormatException nfe) {
+                //dont add product
+            }
+            if (validatedProduct != null && convertedQty !=null) {
+                UUID uniqueID = UUID.randomUUID();
+                request.setAttribute("validatedProduct", validatedProduct);
+                request.setAttribute("currentQty", qty);
+                request.setAttribute("uniqueID", uniqueID);
+            }
+            dispatcher = request.getRequestDispatcher("/WEB-INF/addToCart.jsp");
+        } else if ("change".equals(cart) && uuid != null && qty != null) {
+            request.setAttribute("uuid",uuid);
+            request.setAttribute("qty", qty);
+            request.setAttribute("cart", cart);
+            dispatcher = request.getRequestDispatcher("/WEB-INF/modifyCart.jsp");
+
+        } else if ("remove".equals(cart) && uuid != null) {
+            request.setAttribute("uuid",uuid);
+            request.setAttribute("cart", cart);
+            dispatcher = request.getRequestDispatcher("/WEB-INF/modifyCart.jsp");
+            
+        }
+        else {
+            dispatcher = request.getRequestDispatcher("/WEB-INF/home.jsp");
+            //go to home.jsp
+        }
+        dispatcher.forward(request, response);
     }
 
     /**

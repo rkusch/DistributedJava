@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <!DOCTYPE html>
 
 
@@ -30,6 +31,7 @@ Although you can use them, for a more unique website, replace these images with 
 
     <!-- Custom Fonts from Google -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- jQuery -->
     <script src="js/jquery-1.11.3.min.js"></script>
 
@@ -41,6 +43,12 @@ Although you can use them, for a more unique website, replace these images with 
 
     <!-- Custom Javascript -->
     <script src="js/custom.js"></script>
+    <style>
+        #cartTotals {
+      width: 25px;      
+      
+        }
+    </style>
 
 </head>
 
@@ -73,7 +81,17 @@ Although you can use them, for a more unique website, replace these images with 
                         <a href="?product=all">Products</a>
                     </li>
                     <li>
-                        <a href="?cart=current">Cart</a>
+                        <a href="ShoppingCart?cart=view">Cart 
+                            <% if (session.getAttribute("_cartTotal") != null) {  %>
+                            <i class="fa fa-usd" style="color:white"></i> <%
+                                NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                                Double cartTotal = Double.valueOf((String) session.getAttribute("_cartTotal"));
+                                String cartTotalFormatted = formatter.format(cartTotal);
+                                String cartTotalString = cartTotalFormatted.replace("$", "");
+                    out.println(cartTotalString);
+                                %>
+                            <%}%>
+                            </a>
                     </li>
                     <li>
                         <a href="?orders">Orders</a>

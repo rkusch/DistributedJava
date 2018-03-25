@@ -18,7 +18,7 @@
 
 <% List<StaticPage> pageList = (List<StaticPage>) request.getAttribute("pageList");%>
 <% List<Product> products = (List<Product>) request.getAttribute("allProducts");%>
-<jsp:include page="/WEB-INF/header.html" />
+<jsp:include page="/WEB-INF/header.jsp" />
 <jsp:include page="/WEB-INF/body_top.html" />
 
 
