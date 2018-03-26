@@ -26,5 +26,8 @@
     }
 %>
 <html>
-    <c:redirect url="/ShoppingCart?cart=view"/>
+    <script>
+        window.location = "ShoppingCart?cart=view";
+        </script>
+  <%--  <c:redirect url="/ShoppingCart?cart=view"/> --%>
 </html>

@@ -32,6 +32,7 @@
 %>
 
 <jsp:include page="/WEB-INF/header.jsp" />
+<div id="message">
 <jsp:include page="/WEB-INF/body_top.html" />
 
 
@@ -58,14 +59,14 @@
         <h4><%=product.getName()%> </h4>
         <p>$<%=product.getPrice()%></p>
         <p>
-        <form action="ShoppingCart?cart=change" method="POST" style="color:black;">
+        <form action="ShoppingCart?cart=change" method="POST" style="color:black;" class="ajaxForm">
             <span style="color:white">Qty:</span>
             <input type="text" name="qty" size="2" size="2" maxlength="4" value="<%=qty%>">
             <input type="hidden" name="uuid" value="<%=keySplit[4]%>">
             <input type="submit" value="Change">
         </form>
             <br>
-        <form action="ShoppingCart?cart=remove" method="POST" style="color:black;">
+        <form action="ShoppingCart?cart=remove" method="POST" style="color:black;" class="ajaxForm">
             <input type="hidden" name="uuid" value="<%=keySplit[4]%>">
             <input type="submit" value="Remove">
         </form>
@@ -99,6 +100,7 @@
 
 
 <jsp:include page="/WEB-INF/body_bottom.html" />
+</div>
 <jsp:include page="/WEB-INF/footer.html" />
 
 

@@ -18,12 +18,13 @@
 
 <% List<StaticPage> pageList = (List<StaticPage>) request.getAttribute("pageList");%>
 <jsp:include page="/WEB-INF/header.jsp" />
+<div id="message">
 <jsp:include page="/WEB-INF/body_top.html" />
 
 
 <div>
     <div class='p-one simpleCart_shelfItem'>
-        <form action="ShoppingCart?cart=add" method="POST">
+        <form action="ShoppingCart?cart=add" method="POST" class="ajaxForm">
         <a href='?product=<c:out value="${currentProduct.id}"/>'>
             <img src='<c:out value="${currentProduct.imageUrl}"/>' height='600' width='480'>
         </a>
@@ -36,9 +37,11 @@
         </form>
     </div>
 </div>
+      
 
 
 <jsp:include page="/WEB-INF/body_bottom.html" />
+  </div>
 <jsp:include page="/WEB-INF/footer.html" />
 
 
