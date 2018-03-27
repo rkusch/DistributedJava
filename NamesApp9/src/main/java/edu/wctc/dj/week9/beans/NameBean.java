@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wctc.dj.week8.beans;
-import edu.wctc.dj.week8.model.Name;
-import edu.wctc.dj.week8.model.NameService;
+package edu.wctc.dj.week9.beans;
+import edu.wctc.dj.week9.model.Name;
+import edu.wctc.dj.week9.model.NameService;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wctc.dj.week8.beans;
+package edu.wctc.dj.week9.beans;
 
-import edu.wctc.dj.week8.model.Name;
-import edu.wctc.dj.week8.model.ShoppingCart;
-import edu.wctc.dj.week8.model.ShoppingCartService;
+import edu.wctc.dj.week9.model.Name;
+import edu.wctc.dj.week9.model.ShoppingCart;
+import edu.wctc.dj.week9.model.ShoppingCartService;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;

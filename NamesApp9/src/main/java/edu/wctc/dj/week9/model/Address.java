@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wctc.dj.week8.model;
+package edu.wctc.dj.week9.model;
 
 /**
  *
