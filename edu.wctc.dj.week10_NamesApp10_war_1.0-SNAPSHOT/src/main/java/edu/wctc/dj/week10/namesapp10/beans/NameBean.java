@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wctc.dj.week9.beans;
-import edu.wctc.dj.week9.model.Name;
-import edu.wctc.dj.week9.model.NameService;
+package edu.wctc.dj.week10.namesapp10.beans;
+import edu.wctc.dj.week10.namesapp10.model.Name;
+import edu.wctc.dj.week10.namesapp10.services.NameService;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -14,16 +14,19 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author ryan
  */
-@Named(value = "nameBean")
-@SessionScoped
+@Component("nameBean")
+@Scope("session")
 public class NameBean implements Serializable {
-
-    private final NameService nameService = new NameService();
+    @Autowired
+    private NameService nameService;
     private Name name;
     private List<Name> nameList;
 

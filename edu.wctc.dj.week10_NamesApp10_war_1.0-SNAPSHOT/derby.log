@@ -1,0 +1,31 @@
+Tue Mar 27 18:45:35 CDT 2018 : Apache Derby Network Server - 10.10.2.0 - (1582446) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Tue Mar 27 18:45:36 CDT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0162-69da-47c2-000058e5632f 
+on database directory /Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/Macbook-Repo/DJ/DistributedJava/NamesApp9/names with class loader sun.misc.Launcher$AppClassLoader@5e481248 
+Loaded from file:/Applications/NetBeans/glassfish-4.1.1/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_161-b12
+user.dir=/Applications/NetBeans/glassfish-4.1.1/javadb
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.13.2
+derby.system.home=/Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/Macbook-Repo/DJ/DistributedJava/NamesApp9
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Mar 27 18:45:37 CDT 2018:
+Shutting down instance a816c00e-0162-69da-47c2-000058e5632f on database directory /Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/Macbook-Repo/DJ/DistributedJava/NamesApp9/names with class loader sun.misc.Launcher$AppClassLoader@5e481248 
+Tue Mar 27 18:45:37 CDT 2018 Thread[DRDAConnThread_3,5,main] (DATABASE = names), (DRDAID = {2}), Database 'names' shutdown.
+----------------------------------------------------------------
+Tue Mar 27 18:45:50 CDT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance ed8940a7-0162-69da-47c2-000058e5632f 
+on database directory /Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/Macbook-Repo/DJ/DistributedJava/NamesApp9/names with class loader sun.misc.Launcher$AppClassLoader@5e481248 
+Loaded from file:/Applications/NetBeans/glassfish-4.1.1/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_161-b12
+user.dir=/Applications/NetBeans/glassfish-4.1.1/javadb
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.13.2
+derby.system.home=/Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/Macbook-Repo/DJ/DistributedJava/NamesApp9
+Database Class Loader started - derby.database.classpath=''
