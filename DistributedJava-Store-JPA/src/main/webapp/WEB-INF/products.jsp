@@ -5,7 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="edu.wctc.dj.week9.model.Product"%>
+<%@page import="edu.wctc.dj.week9.entities.Product"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.io.FileReader"%>
 <%@page import="java.io.BufferedReader"%>
@@ -45,7 +45,7 @@
         <div class='col-md-4 product-left single-left'>
             <div class='p-one simpleCart_shelfItem'>
                 <a href='?product=<c:out value="${product.id}"/>'>
-                    <img src='<c:out value="${product.imageUrl}"/>' height='300' width='250'>
+                    <img src='<c:out value="${product.imageurl}"/>' height='300' width='250'>
                     <div class='mask'>
                         <span>Quick View</span>
                     </div>

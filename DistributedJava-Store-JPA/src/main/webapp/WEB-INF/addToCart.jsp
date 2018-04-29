@@ -5,7 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.UUID"%>
-<%@page import="edu.wctc.dj.week9.model.Product"%>
+<%@page import="edu.wctc.dj.week9.entities.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <% Product validatedProduct = (Product) request.getAttribute("validatedProduct");
@@ -14,7 +14,7 @@
         String currentQty = (String) request.getAttribute("currentQty");
         System.out.println("New-" + "cart#qty#" +currentQty + "#product#" + uniqueID);
         System.out.print("New-" + validatedProduct.getId());
-        session.setAttribute("cart#qty#" +currentQty + "#price#" + validatedProduct.getPrice() + "#" + uniqueID, validatedProduct.getId());
+        session.setAttribute("cart#qty#" +currentQty + "#price#" + validatedProduct.getPrice() + "#" + uniqueID, validatedProduct.getId().toString());
         Double cartTotalAmount = 0.0;
         String cartTotal = (String) session.getAttribute("_cartTotal");
         if (cartTotal == null) {

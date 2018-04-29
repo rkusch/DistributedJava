@@ -13,10 +13,9 @@ import javax.persistence.Id;
  *
  * @author ryan
  */
-@Entity
+
 public class Product {
-    @Id
-    @GeneratedValue
+
     private String id;
     private String name;
     private String price;

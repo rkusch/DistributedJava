@@ -1,9 +1,11 @@
 package edu.wctc.dj.week9.controller;
-import edu.wctc.dj.week9.model.Product;
+import edu.wctc.dj.week9.services.ProductFacade;
+import edu.wctc.dj.week9.entities.Product;
 import edu.wctc.dj.week9.services.ProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author ryan
  */
 public class AdventureWorks extends HttpServlet {
+    @EJB
+        private ProductFacade productFacade;
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,8 +60,8 @@ public class AdventureWorks extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-   	ProductService products = new ProductService();
-
+//   	ProductService products = new ProductService();
+        
         RequestDispatcher dispatcher = null;
         String id = request.getParameter("id");
         String product = request.getParameter("product");
@@ -65,12 +70,12 @@ public class AdventureWorks extends HttpServlet {
         String search = request.getParameter("search");
 
         if ("all".equals(product)) {
-            List<Product> allProducts = products.getAllProducts();
-            request.setAttribute("allProducts", allProducts);
+
+            request.setAttribute("allProducts", productFacade.findAll());
             dispatcher = request.getRequestDispatcher("/WEB-INF/products.jsp");
             //go to products.jsp
         } else if (product != null && !("all".equals(product))) {
-            Product currentProduct = products.validateProduct(product);
+            Product currentProduct = productFacade.find(product);
             request.setAttribute("currentProduct", currentProduct);
             dispatcher = request.getRequestDispatcher("/WEB-INF/productDetails.jsp");
             //go to productDetails.jsp

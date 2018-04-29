@@ -75,15 +75,15 @@ Although you can use them, for a more unique website, replace these images with 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active">
 <!--                        <a href="index.html.php.html">Home</a>-->
-                            <a href="?">Home</a>
+                            <a href="AdventureWorks">Home</a>
                     </li>
                     <li>
-                        <a href="?product=all">Products</a>
+                        <a href="AdventureWorks?product=all">Products</a>
                     </li>
                     <li>
                         <a href="ShoppingCart?cart=view">Cart 
                             <% if (session.getAttribute("_cartTotal") != null) {  %>
-                            <i class="fa fa-usd" style="color:white"></i> <%
+                            <i class="fa fa-usd" style="color:white"></i><span id="cartTotalNavbar"> <%
                                 NumberFormat formatter = NumberFormat.getCurrencyInstance();
                                 Double cartTotal = Double.valueOf((String) session.getAttribute("_cartTotal"));
                                 String cartTotalFormatted = formatter.format(cartTotal);
@@ -91,10 +91,10 @@ Although you can use them, for a more unique website, replace these images with 
                     out.println(cartTotalString);
                                 %>
                             <%}%>
-                            </a>
+                            </span></a>
                     </li>
                     <li>
-                        <a href="?orders">Orders</a>
+                        <a href="AdventureWorks?orders">Orders</a>
                     </li>
 
                 </ul>
