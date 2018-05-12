@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package edu.wctc.dj.week9.data.dao;
-import edu.wctc.dj.week9.model.Product;
+import edu.wctc.dj.week9.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 /**
  *

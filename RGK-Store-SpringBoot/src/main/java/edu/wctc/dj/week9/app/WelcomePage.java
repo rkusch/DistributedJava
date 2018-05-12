@@ -10,7 +10,7 @@ public class WelcomePage implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/index.xhtml");
+        registry.addViewController("/").setViewName("forward:/AdventureWorks");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 

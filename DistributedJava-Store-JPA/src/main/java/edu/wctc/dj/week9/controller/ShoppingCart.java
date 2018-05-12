@@ -27,9 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ShoppingCart extends HttpServlet {
 
-    @EJB
-    private ProductFacade productService;
 
+ ProductService productService = new ProductService();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -109,7 +108,7 @@ public class ShoppingCart extends HttpServlet {
             dispatcher = request.getRequestDispatcher("/WEB-INF/cart.jsp");
 
         } else if (id != null && "add".equals(cart) && qty != null) {
-            Product validatedProduct = productService.find(id);
+            Product validatedProduct = productService.getID(id);
             if (validatedProduct != null) {
                 UUID uniqueID = UUID.randomUUID();
                 request.setAttribute("validatedProduct", validatedProduct);
@@ -266,7 +265,7 @@ public class ShoppingCart extends HttpServlet {
                 String qty = keySplit[2];
                 String currentProductID = (String) request.getSession().getValue(key);
                 Product validatedProduct = null;
-                validatedProduct = productService.find(currentProductID);
+                validatedProduct = productService.getID(currentProductID);
                 cartTotalAmount = cartTotalAmount + (Double.valueOf(validatedProduct.getPrice()) * Integer.valueOf(qty));
             }
         }

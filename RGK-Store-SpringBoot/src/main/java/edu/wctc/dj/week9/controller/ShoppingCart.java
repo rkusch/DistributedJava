@@ -27,8 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ShoppingCart extends HttpServlet {
 
-    @EJB
-    private ProductFacade productService;
+  ProductService productService = new ProductService();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -69,7 +68,7 @@ public class ShoppingCart extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ProductService products = new ProductService();
+        ProductService productService = new ProductService();
 
         RequestDispatcher dispatcher = null;
         String id = request.getParameter("id");
@@ -88,7 +87,7 @@ public class ShoppingCart extends HttpServlet {
                 if (key.startsWith("cart")) {
                     String[] keySplit = key.split("#");
                     String productID = (String) request.getSession().getValue(key);
-                    Product validatedProduct = productService.find(productID);
+                    Product validatedProduct = productService.getID(productID);
                     Double qtyConverted = null;
                     if (validatedProduct != null) {
                         try {
@@ -109,7 +108,7 @@ public class ShoppingCart extends HttpServlet {
             dispatcher = request.getRequestDispatcher("/WEB-INF/cart.jsp");
 
         } else if (id != null && "add".equals(cart) && qty != null) {
-            Product validatedProduct = productService.find(id);
+            Product validatedProduct = productService.getID(id);
             if (validatedProduct != null) {
                 UUID uniqueID = UUID.randomUUID();
                 request.setAttribute("validatedProduct", validatedProduct);
@@ -147,7 +146,7 @@ public class ShoppingCart extends HttpServlet {
         String cart = request.getParameter("cart");
         String qty = request.getParameter("qty");
         if (id != null && "add".equals(cart) && qty != null) {
-            Product validatedProduct = productService.find(id);
+            Product validatedProduct = productService.getID(id);
             Integer convertedQty = null;
             try {
                 convertedQty = Integer.valueOf(qty);
@@ -178,7 +177,7 @@ public class ShoppingCart extends HttpServlet {
                         }
                         Object currentID = request.getSession().getValue(key);
                         Product validatedProduct = null;
-                        validatedProduct = productService.find(String.valueOf(currentID));
+                        validatedProduct = productService.getID(String.valueOf(currentID));
                         if (qtyConverted != null && validatedProduct != null) {
                             String newKey = keySplit[0] + "#" + keySplit[1] + "#" + qty + "#" + keySplit[3] + "#" + keySplit[4] + "#" + keySplit[5];
                             System.out.println("a" + validatedProduct.getPrice());
@@ -266,7 +265,7 @@ public class ShoppingCart extends HttpServlet {
                 String qty = keySplit[2];
                 String currentProductID = (String) request.getSession().getValue(key);
                 Product validatedProduct = null;
-                validatedProduct = productService.find(currentProductID);
+                validatedProduct = productService.getID(currentProductID);
                 cartTotalAmount = cartTotalAmount + (Double.valueOf(validatedProduct.getPrice()) * Integer.valueOf(qty));
             }
         }

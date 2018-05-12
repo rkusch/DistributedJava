@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author ryan
  */
 public class AdventureWorks extends HttpServlet {
-    @EJB
-        private ProductFacade productFacade;
+    
+        ProductService productFacade = new ProductService();
 
 
     /**
@@ -71,11 +71,11 @@ public class AdventureWorks extends HttpServlet {
 
         if ("all".equals(product)) {
 
-            request.setAttribute("allProducts", productFacade.findAll());
+            request.setAttribute("allProducts", productFacade.getAllProducts());
             dispatcher = request.getRequestDispatcher("/WEB-INF/products.jsp");
             //go to products.jsp
         } else if (product != null && !("all".equals(product))) {
-            Product currentProduct = productFacade.find(product);
+            Product currentProduct = productFacade.getID(product);
             request.setAttribute("currentProduct", currentProduct);
             dispatcher = request.getRequestDispatcher("/WEB-INF/productDetails.jsp");
             //go to productDetails.jsp

@@ -6,7 +6,7 @@
 package edu.wctc.dj.week9.services;
 
 import edu.wctc.dj.week9.data.dao.IProductDAO;
-import edu.wctc.dj.week9.model.Product;
+import edu.wctc.dj.week9.entities.Product;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;

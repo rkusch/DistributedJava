@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author ryan
  */
 public class AdventureWorks extends HttpServlet {
-    @EJB
-        private ProductFacade productFacade;
+    
 
 
     /**
